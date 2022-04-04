@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap');
+
+:root {
+    --main-color: #222831;
+    --secondary: #393e46;
+    --header: #ffae00;
+    font-family: 'BIZ UDPMincho', serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    color: var(--header);
+    font-size: 48px;
+    -webkit-text-stroke: 1px black;
+}
+
+.container {
+    display: flex;
+    gap: 36px;
+    background-color: var(--main-color);
+    padding: 42px;
+    border-radius: 18px 18px 72px 18px;
+    box-shadow: 3px 3px 1px rgb(19, 19, 19);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+.canvas {
+    padding: 0;
+    width: 512px;
+    height: 512px;
+    background-color: rgb(217, 229, 235);
+    border-radius: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer {
+    flex-shrink: 0;
+    color: var(--header);
+    text-shadow: 1px 1px black;
+}
+
+button {
+    padding: 16px;
+    width: 96px;
+    border: none;
+    border-radius: 12px;
+    background: rgb(102,110,122);
+    background: radial-gradient(circle, rgba(102,110,122,1) 0%, rgba(57,62,70,1) 100%);
+    font-weight: bold;
+    transition: all 0.25s;
+}
+
+button:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.pixel {
+    /* border-bottom: 1px solid rgb(143, 143, 143);
+    border-left: 1px solid rgb(143, 143, 143); */
+    transition: all 0.1s;
+}
+
+.pixel:hover {
+    background-color: black;
+}

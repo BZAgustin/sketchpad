@@ -91,3 +91,7 @@ button:hover {
 .pixel:hover {
     background-color: black;
 }
+
+.slider {
+    margin-top: 36px;   
+}

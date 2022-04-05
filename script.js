@@ -19,6 +19,8 @@ const btnGray = document.getElementById('btn-gray');
 const btnRainbow = document.getElementById('btn-rainbow');
 const btnPalette = document.getElementById('btn-palette');
 const btnClear = document.getElementById('btn-clear');
+const slider = document.getElementById('size');
+const sizeText = document.getElementById('sizeText');
 
 // Add listeners
 btnBlack.addEventListener('click', () => {
@@ -56,10 +58,51 @@ btnClear.addEventListener('click', () => {
     });
 });
 
+slider.addEventListener('input', (e) => {
+    let val = e.target.value;
+    
+    if(val == 1) {
+        sizeText.textContent = `1x1`;
+    } else if(val == 2) {
+        sizeText.textContent = `2x2`;
+    } else if(val == 3) {
+        sizeText.textContent = `4x4`;
+    } else if(val == 4) {
+        sizeText.textContent = `8x8`;
+    } else if(val == 5) {
+        sizeText.textContent = `16x16`;
+    } else if (val == 6) {
+        sizeText.textContent = `32x32`;
+    } else {
+        sizeText.textContent = `64x64`;
+    }
+});
+
+slider.addEventListener('change', (e) => {
+    let val = e.target.value;
+    
+    if(val == 1) {
+        fillCanvas(1);
+    } else if(val == 2) {
+        fillCanvas(2);
+    } else if(val == 3) {
+        fillCanvas(4);
+    } else if(val == 4) {
+        fillCanvas(8);
+    } else if(val == 5) {
+        fillCanvas(16);
+    } else if (val == 6) {
+        fillCanvas(32);
+    } else {
+        fillCanvas(64);
+    }
+})
+
 // On document load, fill canvas with standard amount of pixel divs (32x32)
 function fillCanvas(n) {
     let pixels = []; 
     let pixCount = 0; // For pixel div IDs
+    clearCanvas(); // Remove all child nodes if there were any
 
     for(let i=0; i<n; i++) {
         for(let j=0; j<n; j++) {
@@ -80,6 +123,12 @@ function fillCanvas(n) {
     }
 
     return pixels;
+};
+
+function clearCanvas() {
+    while(canvas.firstChild) {
+        canvas.removeChild(canvas.firstChild);
+    }
 };
 
 // Determines how the pixel will be drawn depending on which mode is active
@@ -122,4 +171,4 @@ function generatePalette() {
     }
 }
 
-let pArray = fillCanvas(16);
+let pArray = fillCanvas(8);

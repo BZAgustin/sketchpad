@@ -4,14 +4,8 @@ let grayMode = false;
 let rainbowMode = false;
 let paletteMode = false;
 
-// Empty color palette
+// Empty color palette for Palette Mode
 let palette = [];
-
-// Acceptable canvas sizes (n*n):
-const canvaSizes = [1, 2, 4, 8, 16, 32, 64];
-
-// Target canvas
-const canvas = document.querySelector('.canvas');
 
 // Target buttons
 const btnBlack = document.getElementById('btn-black');
@@ -22,7 +16,10 @@ const btnClear = document.getElementById('btn-clear');
 const slider = document.getElementById('size');
 const sizeText = document.getElementById('sizeText');
 
-// Add listeners
+// Target canvas
+const canvas = document.querySelector('.canvas');
+
+// Add button listeners
 btnBlack.addEventListener('click', () => {
     blackMode = true;
     grayMode = false;
@@ -52,12 +49,9 @@ btnPalette.addEventListener('click', () => {
     generatePalette();
 });
 
-btnClear.addEventListener('click', () => {
-    pArray.forEach(element => {
-        element.style.backgroundColor = 'rgb(217, 229, 235)';
-    });
-});
+btnClear.addEventListener('click', updateCanvas);
 
+// Update current size text every time the slider moves
 slider.addEventListener('input', (e) => {
     let val = e.target.value;
     
@@ -78,8 +72,39 @@ slider.addEventListener('input', (e) => {
     }
 });
 
-slider.addEventListener('change', (e) => {
-    let val = e.target.value;
+slider.addEventListener('change', updateCanvas);
+
+// On document load, fill canvas with standard amount of pixel divs (32x32)
+function fillCanvas(n) {
+    let pixCount = 0; // For pixel div IDs
+    clearCanvas(); // Remove all child nodes if there were any
+
+    for(let i=0; i<n; i++) {
+        for(let j=0; j<n; j++) {
+            // Create div element, give it a unique ID, add the 'pixel' class to it,
+            // set its size, an event listener and finally append it to the canvas
+            let pix = document.createElement('div');
+            pix.id = `pixel-${pixCount}`;
+            pix.classList.add('pixel'); 
+            pix.style.width = `${(512/n)}px`;
+            pix.style.height = `${(512/n)}px`;
+            pix.addEventListener('mouseenter', (e) => {
+                drawPixel(e);
+            });
+            canvas.appendChild(pix);
+            pixCount++;
+        }
+    }    
+};
+
+function clearCanvas() {
+    while(canvas.firstChild) {
+        canvas.removeChild(canvas.firstChild);
+    }
+};
+
+function updateCanvas() {
+    let val = slider.value;
     
     if(val == 1) {
         fillCanvas(1);
@@ -96,40 +121,7 @@ slider.addEventListener('change', (e) => {
     } else {
         fillCanvas(64);
     }
-})
-
-// On document load, fill canvas with standard amount of pixel divs (32x32)
-function fillCanvas(n) {
-    let pixels = []; 
-    let pixCount = 0; // For pixel div IDs
-    clearCanvas(); // Remove all child nodes if there were any
-
-    for(let i=0; i<n; i++) {
-        for(let j=0; j<n; j++) {
-            // Create div element, give it a unique ID, add the 'pixel' class to it,
-            // set its size, an event listener and finally append it to the canvas
-            let pix = document.createElement('div');
-            pix.id = `pixel-${pixCount}`;
-            pix.classList.add('pixel'); 
-            pix.style.width = `${(512/n)}px`;
-            pix.style.height = `${(512/n)}px`;
-            pix.addEventListener('mouseenter', (e) => {
-                drawPixel(e);
-            });
-            pixels.push(pix);
-            canvas.appendChild(pix);
-            pixCount++;
-        }
-    }
-
-    return pixels;
-};
-
-function clearCanvas() {
-    while(canvas.firstChild) {
-        canvas.removeChild(canvas.firstChild);
-    }
-};
+}
 
 // Determines how the pixel will be drawn depending on which mode is active
 function drawPixel(e) {
@@ -171,4 +163,5 @@ function generatePalette() {
     }
 }
 
-let pArray = fillCanvas(8);
+// Fill canvas
+fillCanvas(8);

@@ -4,8 +4,7 @@
     --primary: #161f2c;
     --secondary: #303d50;
     --accent: #fd8e27;
-    /* font-family: 'BIZ UDPMincho', serif; */
-    font-family: 'Dosis', 'Calibri', sans-serif;
+    font-family: 'Dosis', 'Courier New', sans-serif;
 }
 
 html, body {
@@ -30,7 +29,6 @@ header {
 header h1 {
     color: var(--accent);
     font-size: 56px;
-    /* -webkit-text-stroke: 1.4px black; */
     text-shadow: 2px 2px 1px black;
 
 }
@@ -134,8 +132,6 @@ button:hover {
 }
 
 .pixel {
-    /* border-bottom: 1px solid rgb(143, 143, 143);
-    border-left: 1px solid rgb(143, 143, 143); */
     transition: all 0.1s;
 }
 

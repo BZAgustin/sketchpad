@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@800&family=M+PLUS+Rounded+1c:wght@500&display=swap');
 
 :root {
-    --main-color: #222831;
-    --secondary: #393e46;
-    --header: #ffae00;
-    font-family: 'BIZ UDPMincho', serif;
+    --primary: #161f2c;
+    --secondary: #303d50;
+    --accent: #fd8e27;
+    /* font-family: 'BIZ UDPMincho', serif; */
+    font-family: 'Dosis', 'Calibri', sans-serif;
 }
 
 html, body {
@@ -27,21 +28,24 @@ header {
 }
 
 header h1 {
-    color: var(--header);
-    font-size: 48px;
-    -webkit-text-stroke: 1px black;
+    color: var(--accent);
+    font-size: 56px;
+    /* -webkit-text-stroke: 1.4px black; */
+    text-shadow: 2px 2px 1px black;
+
 }
 
 .container {
     display: flex;
     gap: 36px;
-    background-color: var(--main-color);
+    background-color: var(--primary);
     padding: 42px;
     border-radius: 18px 18px 72px 18px;
-    box-shadow: 3px 3px 1px rgb(19, 19, 19);
+    box-shadow: 3px 3px 2px rgb(8, 8, 8);
 }
 
 .controls {
+    margin-top: 36px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,24 +66,71 @@ header h1 {
 
 footer {
     flex-shrink: 0;
-    color: var(--header);
+    color: var(--accent);
     text-shadow: 1px 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color:rgb(59, 165, 115);
+}
+
+a:hover {
+    color:rgb(125, 199, 164);
+}
+
+img {
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
 }
 
 button {
     padding: 16px;
-    width: 96px;
+    width: 128px;
     border: none;
     border-radius: 12px;
     background: rgb(102,110,122);
     background: radial-gradient(circle, rgba(102,110,122,1) 0%, rgba(57,62,70,1) 100%);
     font-weight: bold;
-    transition: all 0.25s;
+    transition: all 0.4s;
+    border: 1px solid rgb(127, 127, 167);
+    font-family: 'Courier New', sans-serif;
+    font-size: 16px;
 }
 
 button:hover {
     cursor: pointer;
+    border: 1px solid white;
+}
+
+#btn-black:hover {
     color: white;
+    background: rgb(0, 0, 0);
+    background: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(32, 32, 32) 100%);
+}
+
+#btn-gray:hover {
+    background: rgb(19,19,19);
+    background: linear-gradient(133deg, rgba(19,19,19,1) 0%, rgba(255,255,255,1) 100%, rgba(150,150,150,1) 100%);
+}
+
+#btn-rainbow:hover {
+    background: rgb(196,0,0);
+    background: linear-gradient(133deg, rgba(196,0,0,1) 0%, rgba(237,245,0,1) 15%, rgba(1,204,0,1) 33%, rgba(0,206,208,1) 52%, rgba(0,28,222,1) 69%, rgba(209,0,174,1) 85%, rgba(232,0,0,1) 100%);
+}
+
+#btn-palette:hover {
+    background: rgb(0,23,73);
+    background: linear-gradient(133deg, rgba(0,23,73,1) 0%, rgba(73,101,138,1) 49%, rgba(255,178,24,1) 91%);
+}
+
+#btn-clear:hover {
+    background: rgb(255,255,255);
+    background: linear-gradient(133deg, rgba(255,255,255,1) 0%, rgba(189,206,218,1) 100%);
 }
 
 .pixel {
@@ -93,5 +144,11 @@ button:hover {
 }
 
 .slider {
-    margin-top: 36px;   
+    margin-top: 18px;
+    margin-bottom: -24px;
+}
+
+#sizeText {
+    color: var(--accent);
+    text-shadow: 1px 1px black;
 }
